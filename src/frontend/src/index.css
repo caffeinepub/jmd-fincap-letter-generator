@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    /* Dark Navy: #001F3F -> oklch(~0.17 0.065 248) */
+    /* Deep Gold: #E68A00 -> oklch(~0.62 0.155 60) */
+    --background: 0.95 0.008 240;
+    --foreground: 0.15 0.025 248;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.025 248;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.025 248;
+    /* Primary = JMD Gold #E68A00 */
+    --primary: 0.62 0.155 60;
+    --primary-foreground: 0.17 0.065 248;
+    /* Secondary = JMD Navy #001F3F */
+    --secondary: 0.17 0.065 248;
+    --secondary-foreground: 1 0 0;
+    --muted: 0.93 0.008 240;
+    --muted-foreground: 0.52 0.018 240;
+    --accent: 0.93 0.015 240;
+    --accent-foreground: 0.15 0.025 240;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.012 240;
+    --input: 0.88 0.012 240;
+    --ring: 0.62 0.155 60;
+    --sidebar: 0.17 0.065 248;
+    --sidebar-foreground: 0.88 0.02 240;
+    --sidebar-primary: 0.62 0.155 60;
+    --sidebar-primary-foreground: 0.17 0.065 248;
+    --sidebar-accent: 0.22 0.065 248;
+    --sidebar-accent-foreground: 0.9 0.02 240;
+    --sidebar-border: 0.25 0.055 248;
+    --sidebar-ring: 0.62 0.155 60;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Montserrat", "Plus Jakarta Sans", "Inter", system-ui,
+      sans-serif;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRINT STYLES — Correct blank PDF fix (position: absolute)
+   ═══════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Hide ALL UI elements except the letter */
+  body > * {
+    display: none !important;
+  }
+
+  /* Show the React root so the letter inside is visible */
+  body > #root {
+    display: block !important;
+  }
+
+  /* Inside root, hide everything */
+  #root * {
+    visibility: hidden !important;
+  }
+
+  /* Only the letter area visible */
+  #letter-print-area {
+    visibility: visible !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 99999 !important;
+  }
+
+  #letter-print-area * {
+    visibility: visible !important;
+  }
+
+  .letter-sheet {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
